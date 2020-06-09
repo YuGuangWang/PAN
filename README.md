@@ -1,4 +1,3 @@
-> 📋A template README.md for code accompanying a Machine Learning paper
 
 # Path Integral Based Convolution and Pooling for Graph Neural Networks
 
