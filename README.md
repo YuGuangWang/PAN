@@ -1,8 +1,8 @@
 > 📋A template README.md for code accompanying a Machine Learning paper
 
-# My Paper Title
+# Path Integral Based Convolution and Pooling for Graph Neural Networks
 
-This repository is the official implementation of [My Paper Title](https://arxiv.org/abs/2030.12345). 
+This repository is the official implementation of [Path Integral Based Convolution and Pooling for Graph Neural Networks](https://arxiv.org/abs/). 
 
 > 📋Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
 
