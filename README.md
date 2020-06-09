@@ -39,13 +39,13 @@ python pan_pointpattern_phi035.py
 
 ## Results
 
-Our model PAN achieves the following performance on graph classification benchmark datasets MUTAG, PROTEINSF and NCI1, and our new graph classification dataset PointPattern (with phi=0.35). Compared to existing methods such as GCN ... with the same network architecture, PAN achieves top test accuracy on all these datasets. The results are obtained using the above .py programs.
+Our model PAN achieves the following performance on graph classification benchmark datasets MUTAG, PROTEINSF and NCI1, and our new graph classification dataset PointPattern (with phi=0.35). The table below shows the mean test accuracy with SD. Compared to existing methods such as GCN ... with the same network architecture, PAN achieves top test accuracy on all these datasets. The results are obtained using the above .py programs.
 
 ### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
 
-| Model name         |   MUTAG         |   PROTEINSF    |   NCI1       |   PointPattern, \phi=0.35 |
-| ------------------ |---------------- | -------------- |--------------|---------------------------|
-|     PAN            |     85%         |      95%       |              |                           |
+| Model name         |   MUTAG         |   PROTEINSF     |   NCI1       |   PointPattern, \phi=0.35 |
+| ------------------ |---------------- | --------------- |--------------|---------------------------|
+|     PAN            |     85% (0.5%)  |      95% (0.5%) |              |                           |
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
