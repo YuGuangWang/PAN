@@ -20,7 +20,13 @@ pip install -r requirements.txt
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. 
 
 ```PANConv+PANPool on MUTAG
-python train.py --input-data
+python pan_mutag.py
+```
+```PANConv+PANPool on PROTEINSF
+python pan_proteinsf.py
+```
+```PANConv+PANPool on NCI1
+python pan_nci1.py
 ```
 
 > 📋Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
