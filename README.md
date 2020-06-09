@@ -21,6 +21,7 @@ To train and test the model(s) in the paper, run the following command. We provi
 
 ```PANConv+PANPool on MUTAG
 python train.py --input-data
+```
 
 > 📋Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
 
