@@ -36,7 +36,7 @@ python pan_nci1.py
 
 ## Results
 
-Our model achieves the following performance on :
+Our model PAN achieves the following performance on graph classification benchmark datasets MUTAG, PROTEINSF and NCI1, and our new graph classification dataset PointPattern (with phi=0.35). Compared to existing methods such as GCN ... with the same network architecture, PAN achieves top test accuracy on all these datasets.
 
 ### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
 
