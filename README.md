@@ -3,7 +3,7 @@
 
 This repository is the official implementation of [Path Integral Based Convolution and Pooling for Graph Neural Networks](https://arxiv.org/abs/). 
 
-![PAN idea](pan_idea.png width=200)
+![PAN idea](pan_idea.png)
 
 
 ## Requirements
