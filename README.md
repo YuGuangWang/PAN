@@ -17,15 +17,15 @@ pip install -r requirements.txt
 
 ## Training and Evaluation
 
-To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. 
+To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. The running environment is recommended in a GPU server.
 
-```PAN on MUTAG
-python pan_mutag.py
-```
-```PAN on PROTEINSF
-python pan_proteinsf.py
+```PAN on Graph classification benchmark datasets; 
+python pan_benchmark.py --dataname
 ```
 ```PAN on NCI1
+python pan_nci1.py
+```
+```PAN on AIDS
 python pan_nci1.py
 ```
 ```PAN on PointPattern
@@ -39,13 +39,13 @@ python pan_pointpattern.py --phi 0.3 --runs 10
 
 ## Results
 
-Our model PAN achieves the following performance on graph classification benchmark datasets MUTAG, PROTEINSF and NCI1, and our new graph classification dataset PointPattern (with phi=0.35). The table below shows the mean test accuracy with SD for 10 repetitions. Compared to existing methods such as GCN ... with the same network architecture, the PAN achieves top test accuracy on all these datasets. The results are obtained using the above .py programs. The test results on other benchmarks and comparison with the results of other methods can be seen in the paper.
+Our model PAN achieves the following performance on graph classification benchmark datasets MUTAG, PROTEINSF and NCI1, and our new graph classification dataset PointPattern (with phi=0.35). The table below shows the mean test accuracy with SD for 10 repetitions. Compared to existing methods such as GCNConv+TopKPool, SAGEConv+SAGPool, GATConv+EdgePool, with the same network architecture, the PAN achieves top test accuracy on most of these datasets. The results are obtained using the above .py programs. The test results on other benchmarks and comparison with the results of other methods can be seen in the paper.
 
 ### [PAN on Graph Classification Datasets]()
 
-| Model name         |   MUTAG         |   PROTEINSF     |   NCI1       |   PointPattern, \phi=0.35 |
+| Model name         |   PROTEINS      |       NCI       |    AIDS      |   PointPattern, phi=0.35 |
 | ------------------ |---------------- | --------------- |--------------|---------------------------|
-|     PAN            |     85% (0.5%)  |      95% (0.5%) |              |                           |
+|     PAN            |  76.6% (2.06%)  |      95% (0.5%) |              |                           |
 
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
