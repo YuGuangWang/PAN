@@ -10,7 +10,7 @@ from torch_scatter import scatter_add, scatter_max, scatter_mean
 from torch_geometric.utils import softmax, degree
 from torch_geometric.nn import MessagePassing
 from torch_geometric.data import DataLoader, Data
-#from torch_geometric.datasets import TUDataset
+from torch_geometric.datasets import TUDataset
 from torch_geometric.utils.num_nodes import maybe_num_nodes
 #from torch_geometric.nn.pool import TopKPooling, SAGPooling
 
@@ -27,8 +27,8 @@ import scipy.io as sio
 import numpy as np
 from optparse import OptionParser
 import time
-import gdown
-import zipfile
+#import gdown
+#import zipfile
 
 #CUDA_visible_devices = 1
 
@@ -764,9 +764,12 @@ def test(model,loader,device):
     return correct / len(loader.dataset), loss/len(loader.dataset)
 
 parser = OptionParser()
+parser.add_option("--dataset_name",
+                  dest="dataset_name", default='PROTEINS',
+                  help="the name of dataset from Pytorch Geometric, other options include PROTEINS_full, NCI1, AIDS, Mutagenicity")
 parser.add_option("--phi",
                   dest="phi", default=0.3, type=np.float,
-                  help="type of pointpattern dataset")
+                  help="type of dataset dataset")
 parser.add_option("--runs",
                   dest="runs", default=1, type=np.int,
                   help="number of runs")
@@ -792,6 +795,7 @@ parser.add_option("--epochs", type=np.int,
                   dest="epochs", default=100,
                   help="number of epochs each run")
 options, argss = parser.parse_args()
+datasetname = options.dataset_name
 phi = options.phi
 runs = options.runs
 batch_size = options.batch_size
@@ -810,67 +814,33 @@ min_loss = 1e10*np.ones(runs)
 
 # dataset
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-dataname = 'PointPattern'
-num_graph = 15000
-if phi==0.3:
-    ld_dir = 'hpr_phi03' + '_' + str(num_graph) + '/'
-    url = 'https://drive.google.com/uc?id=1C3ciJsteqsKFVGF8JI8-KnXhe4zY41Ss'
-    output = 'hpr_phi03' + '_' + str(num_graph) + '.zip'
-if phi==0.4:
-    ld_dir = 'hpr_phi04' + '_' + str(num_graph) + '/'
-    url = 'https://drive.google.com/uc?id=1rsTh09FzGxHculBVrYyl5tOHD9mxqc0G'
-    output = 'hpr_phi04' + '_' + str(num_graph) + '.zip'
-if phi==0.35:
-    ld_dir = 'hpr_phi035' + '_' + str(num_graph) + '/'
-    url = 'https://drive.google.com/uc?id=16pI974P8WzanBUPrMHIaGfeSLoksviBk'
-    output = 'hpr_phi035' + '_' + str(num_graph) + '.zip'
-if not os.path.exists(output):
-    gdown.download(url, output, quiet=False)
-with zipfile.ZipFile(output, 'r') as zip_ref:
-    zip_ref.extractall()
-#os.remove(output)
-# load edge_index
-ld_edge_index = ld_dir + 'graph' + str(num_graph) + '_edge_index' + '.mat'
-edge_index = sio.loadmat(ld_edge_index)
-edge_index = edge_index['edge_index'][0]
-# load feature
-ld_feature = ld_dir + 'graph' + str(num_graph) + '_feature' + '.mat'
-feature = sio.loadmat(ld_feature)
-feature = feature['feature'][0]
-# load label
-ld_label = ld_dir + 'graph' + str(num_graph) + '_label' + '.mat'
-label = sio.loadmat(ld_label)
-label = label['label']
-## store edge, feature and label into a graph, in format of "torch_geometric.datasets.Data"
-pointpattern = list()
+sv_dir = 'data/'
+if not os.path.exists(sv_dir):
+    os.makedirs(sv_dir)
+path = os.path.join(os.path.abspath(''), 'data', datasetname)
+dataset = TUDataset(path, name=datasetname)
+
+print(len(dataset))
+print(dataset.num_classes)
+print(dataset.num_node_features)
+
+num_classes = dataset.num_classes
+num_node_features = dataset.num_node_features
 num_edge = 0
-num_feature = 0
 num_node = 0
-num_classes = 3
-num_graph = edge_index.shape[0]
+num_graph = len(dataset)
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-for i in range(num_graph):
-    # extract edge index, turn to tensor
-    edge_index_1 = np.array(edge_index[i][:,0:2],dtype=np.int)
-    edge_index_1 = torch.tensor(edge_index_1, dtype=torch.long)
-    # number of edges
-    num_edge = num_edge + edge_index_1.shape[0]
-    # extract feature, turn to tensor
-    feature_1 = torch.tensor(np.array(feature[i],dtype=np.int), dtype=torch.float)
-    # number of nodes
-    num_node = num_node + feature_1.shape[0]
-    # number of features
-    num_feature = num_feature + feature_1.shape[1]
-    # extract label, turn to tensor
-    label_1 = torch.tensor(label[i],dtype=torch.long)
-    # put edge, feature, label together to form graph information in "Data" format
-    data_1 = Data(x=feature_1, edge_index=edge_index_1.t().contiguous(), y=label_1)
-    pointpattern.append(data_1)
+dataset1 = list()
+for i in range(len(dataset)):
+    data1 = Data(x=dataset[i].x, edge_index=dataset[i].edge_index, y=dataset[i].y)
+    data1.num_node = dataset[i].num_nodes
+    data1.num_edge = dataset[i].edge_index.size(1)
+    num_node = num_node + data1.num_node
+    num_edge = num_edge + data1.num_edge
+    dataset1.append(data1)
+dataset = dataset1
 
 num_edge = num_edge*1.0/num_graph
-num_feature = num_feature*1.0/num_graph
 num_node = num_node*1.0/num_graph
 
 # generate training, validation and test data sets
@@ -881,12 +851,12 @@ num_test = num_graph - (num_training+num_val)
 ## train model
 for run in range(runs):
 
-    training_set, val_set, test_set = random_split(pointpattern, [num_training,num_val,num_test])
+    training_set, val_set, test_set = random_split(dataset, [num_training,num_val,num_test])
     train_loader = DataLoader(training_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
 
-    print('***** PAN for {}, phi {} *****'.format(dataname,phi))
+    print('***** PAN for {}, phi {} *****'.format(datasetname,phi))
     print('#training data: {}, #test data: {}'.format(num_training,num_test))
     print('Mean #nodes: {:.1f}, mean #edges: {:.1f}'.format(num_node,num_edge))
     print('Network architectur: PC-PA')
@@ -895,7 +865,6 @@ for run in range(runs):
     print('Device: {}'.format(device))
 
     ## train model
-    num_node_features = 1
     model = PAN(num_node_features,num_classes,nhid=nhid,ratio=pool_ratio,filter_size=filter_size).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
@@ -938,7 +907,7 @@ for run in range(runs):
 print('==Mean Test Acc: {:.4f}'.format(np.mean(test_acc)))
 
 t1 = time.time()
-sv = dataname + '_pcpa_runs' + str(runs) + '_phi' + str(phi) + '_time' + str(t1) + '.mat'
+sv = datasetname + '_pcpa_runs' + str(runs) + '_phi' + str(phi) + '_time' + str(t1) + '.mat'
 sio.savemat(sv,mdict={'test_acc':test_acc,'val_loss':val_loss,'val_acc':val_acc,'train_loss':train_loss,'filter_size':filter_size,'learning_rate':learning_rate,'weight_decay':weight_decay,'nhid':nhid,'batch_size':batch_size,'epochs':epochs})
 
 
