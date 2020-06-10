@@ -34,8 +34,6 @@ Our model PAN achieves the following performance on graph classification benchma
 
 ![PAN results](pan_results.png)
 
-> 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
-
 ## New datasets
 Our new datasets are for 3-classification task of point distribtuion graphs, stemming from statistical mechanics. Use following commands to download the three typical datasets we used in the paper:
 ```
