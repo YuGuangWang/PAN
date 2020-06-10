@@ -19,15 +19,15 @@ pip install -r requirements.txt
 
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. The running environment is recommended in a GPU server.
 
-# PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINSF, NCI1, AIDS, MUTAGEN
+###[PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINSF, NCI1, AIDS, MUTAGEN]()
 ```
 python pan_benchmark.py --dataname --L 3 --runs 10
 ```
-# PAN on PointPattern classification task
+###[PAN on PointPattern classification task]()
 ```
 python pan_pointpattern.py --phi 0.3 --L 4 --runs 10
 ```
-Other hyperparameters: --
+Other hyperparameters: --batch_size, --learning_rate, --weight_decay, --pool_ratio, --nhid, --epochs
 
 ## Results
 
@@ -35,10 +35,7 @@ Our model PAN achieves the following performance on graph classification benchma
 
 ### [PAN on Graph Classification Datasets]()
 
-| Model name         |   PROTEINS      |    PROTEINSF    |      NCI1     |      AIDS     |    MUTAGEN    |   PointPattern  |
-| ------------------ |---------------- | --------------- | ------------- | ------------- ｜ ------------ | --------------- |
-|     PAN            |  76.6% (2.06%)  |      95% (0.5%) |               |               ｜              |                 |
-
+<img src="PAN/blob/master/pan_results.png" alt="pan_results" width="430">
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
