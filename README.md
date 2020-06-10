@@ -60,7 +60,7 @@ with zipfile.ZipFile(output, 'r') as zip_ref:
 os.remove(output)
 ```
 The following shows examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA
-![pointpattern](pointpattern.png)
+![pointpattern](pointpattern.png "examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA")
 
 ## Contributing
 Copyright (c) <2020> <NeurIPS>
