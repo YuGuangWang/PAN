@@ -13,8 +13,6 @@ To install requirements:
 pip install -r requirements.txt
 ```
 
-> 📋Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
-
 ## Training and Evaluation
 
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. The running environment is recommended in a GPU server.
