@@ -19,11 +19,11 @@ pip install -r requirements.txt
 
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. The running environment is recommended in a GPU server.
 
-###[PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINSF, NCI1, AIDS, MUTAGEN]()
+### [PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINSF, NCI1, AIDS, MUTAGEN]()
 ```
 python pan_benchmark.py --dataname --L 3 --runs 10
 ```
-###[PAN on PointPattern classification task]()
+### [PAN on PointPattern classification task]()
 ```
 python pan_pointpattern.py --phi 0.3 --L 4 --runs 10
 ```
