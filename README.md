@@ -29,7 +29,7 @@ python pan_proteinsf.py
 python pan_nci1.py
 ```
 ```PAN on PointPattern
-python pan_pointpattern.py
+python pan_pointpattern.py --phi 0.3 --runs 10
 ```
 
 > 📋Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
