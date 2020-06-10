@@ -19,23 +19,15 @@ pip install -r requirements.txt
 
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. The running environment is recommended in a GPU server.
 
-```PAN on Graph classification benchmark datasets; 
-python pan_benchmark.py --dataname
+# PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINSF, NCI1, AIDS, MUTAGEN
 ```
-```PAN on NCI1
-python pan_nci1.py
+python pan_benchmark.py --dataname --L 3 --runs 10
 ```
-```PAN on AIDS
-python pan_nci1.py
+# PAN on PointPattern classification task
 ```
-```PAN on PointPattern
-python pan_pointpattern.py --phi 0.3 --runs 10
+python pan_pointpattern.py --phi 0.3 --L 4 --runs 10
 ```
-
-> 📋Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
-
-
-> 📋Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
+Other hyperparameters: --
 
 ## Results
 
@@ -43,9 +35,9 @@ Our model PAN achieves the following performance on graph classification benchma
 
 ### [PAN on Graph Classification Datasets]()
 
-| Model name         |   PROTEINS      |       NCI       |    AIDS      |   PointPattern, phi=0.35 |
-| ------------------ |---------------- | --------------- |--------------|---------------------------|
-|     PAN            |  76.6% (2.06%)  |      95% (0.5%) |              |                           |
+| Model name         |   PROTEINS      |    PROTEINSF    |      NCI1     |      AIDS     |    MUTAGEN    |   PointPattern  |
+| ------------------ |---------------- | --------------- | ------------- | ------------- ｜ ------------ | --------------- |
+|     PAN            |  76.6% (2.06%)  |      95% (0.5%) |               |               ｜              |                 |
 
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
