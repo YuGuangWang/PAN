@@ -35,7 +35,7 @@ Our model PAN achieves the following performance on graph classification benchma
 
 ### [PAN on Graph Classification Datasets]()
 
-![PAN results](PAN/pan_results.png?raw=true "Title")
+![PAN results](pan_results.png)
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
