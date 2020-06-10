@@ -3,7 +3,8 @@
 
 This repository is the official implementation of [Path Integral Based Convolution and Pooling for Graph Neural Networks](https://arxiv.org/abs/). 
 
-> 📋Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+![PAN idea](pan_idea.png)
+
 
 ## Requirements
 
@@ -35,6 +36,33 @@ Our model PAN achieves the following performance on graph classification benchma
 
 > 📋Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
+## New datasets
+Our new datasets are for 3-classification task of point distribtuion graphs, stemming from statistical mechanics. Use following commands to download the three typical datasets we used in the paper:
+```
+import os
+import zipfile
+import gdown
+phi = 0.3 # change to 0.35 or 0.4 for other two PointPattern datasets
+if phi==0.3:
+    ld_dir = 'hpr_phi03' + '_' + str(num_graph) + '/'
+    url = 'https://drive.google.com/uc?id=1C3ciJsteqsKFVGF8JI8-KnXhe4zY41Ss'
+    output = 'hpr_phi03' + '_' + str(num_graph) + '.zip'
+if phi==0.4:
+    ld_dir = 'hpr_phi04' + '_' + str(num_graph) + '/'
+    url = 'https://drive.google.com/uc?id=1rsTh09FzGxHculBVrYyl5tOHD9mxqc0G'
+    output = 'hpr_phi04' + '_' + str(num_graph) + '.zip'
+if phi==0.35:
+    ld_dir = 'hpr_phi035' + '_' + str(num_graph) + '/'
+    url = 'https://drive.google.com/uc?id=16pI974P8WzanBUPrMHIaGfeSLoksviBk'
+    output = 'hpr_phi035' + '_' + str(num_graph) + '.zip'
+if not os.path.exists(output):
+    gdown.download(url, output, quiet=False)
+with zipfile.ZipFile(output, 'r') as zip_ref:
+    zip_ref.extractall()
+os.remove(output)
+```
+The following shows examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA
+![pointpattern](pointpattern.png)
 
 ## Contributing
 Copyright (c) <2020> <NeurIPS>
