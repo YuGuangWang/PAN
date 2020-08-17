@@ -1,9 +1,11 @@
 
 # Path Integral Based Convolution and Pooling for Graph Neural Networks
 
-This repository is the official implementation of [Path Integral Based Convolution and Pooling for Graph Neural Networks](https://arxiv.org/abs/). 
+This repository is the official implementation of [Path Integral Based Convolution and Pooling for Graph Neural Networks](https://arxiv.org/abs/2006.16811). 
 
 ![PAN idea](pan_idea.png)
+
+In the figure above we draw the analogy between our discrete version and the original formulation. It is straightforward to see that the integral should now be replaced by a summation, and $\phi_0(x)$ only resides on nodes. Since a statistical mechanics perspective is more proper in our case, we directly change the exponential term, which is originally an integral of Lagrangian, to a Boltzmann's factor with fictitious energy $E[\pathi]$ and temperature $T$; we choose Boltzmann's constant $k_B=1$. Nevertheless, we still exploit the fact that the energy is a functional of the path, which gives us a way to weight the influence of other nodes through a certain path. The fictitious temperature controls the excitation level of the system, which reflects that to what extent information is localized or extended. In practice, there is no need to learn the fictitious temperature or energy separately, instead the neural networks can directly learn the overall weights.
 
 
 ## Requirements
