@@ -64,6 +64,17 @@ os.remove(output)
 The following shows examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA
 ![pointpattern](pointpattern.png "examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA")
 
+## Citation 
+If you use our codes and datasets, please cite:
+```
+@inproceedings{ma2020path,
+  title={Path Integral Based Convolution and Pooling for Graph Neural Networks},
+  author={Ma, Zheng and Xuan, Junyu and Wang, Yu Guang and Li, Ming and Lio, Pietro},
+  booktitle={NeurIPS},
+  year={2020}
+}
+```
+
 ## Contributing
 Copyright (c) <2020> <NeurIPS>
 
