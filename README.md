@@ -20,9 +20,9 @@ pip install -r requirements.txt
 
 To train and test the model(s) in the paper, run the following command. We provide the codes for PAN on three benchmarks in Table 1 and the new dataset PointPattern. The dataset will be downloaded and preprocessed before training. All the experiments were performed using [PyTorch Geometric](https://github.com/rusty1s/pytorch_geometric) and run on a server with Intel(R) Core(TM) i9-9820X CPU 3.30GHz, NVIDIA GeForce RTX 2080 Ti and NVIDIA TITAN V GV100.
 
-PAN on Graph classification benchmark datasets; dataname to be replaced by PROTEINS, PROTEINS_full, NCI1, AIDS, Mutagenicity
+PAN on Graph classification benchmark datasets; $dataname to be replaced by PROTEINS, PROTEINS_full, NCI1, AIDS, Mutagenicity
 ```
-python pan_benchmark.py --dataname --L 3 --runs 10
+python pan_benchmark.py --dataset_name $dataname --L 3 --runs 10
 ```
 PAN on PointPattern classification task
 ```
