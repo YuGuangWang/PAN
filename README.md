@@ -65,7 +65,7 @@ The following shows examples of graphs in PointPattern, phi=0.3; left to right: 
 ![pointpattern](pointpattern.png "examples of graphs in PointPattern, phi=0.3; left to right: HS, Poisson, RSA")
 
 ## Citation 
-If you use our codes and datasets, please cite:
+If you have used our codes and datasets, please cite:
 ```
 @inproceedings{ma2020path,
   title={Path Integral Based Convolution and Pooling for Graph Neural Networks},
