@@ -85,7 +85,7 @@ torch-spline-conv==1.2.0
 torchvision==0.5.0
 tornado==6.0.4
 tqdm==4.46.0
-urllib3==1.25.9
+urllib3>=1.26.5
 Werkzeug==1.0.1
 wrapt==1.12.1
 yarl==1.4.2
