@@ -40,7 +40,7 @@ mkl-service==2.3.0
 multidict==4.7.5
 networkx==2.4
 numba==0.49.0
-numpy==1.18.1
+numpy==1.22.0
 oauthlib==3.1.0
 olefile==0.46
 opt-einsum==3.2.1
