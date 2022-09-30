@@ -27,7 +27,7 @@ hyperopt==0.2.4
 idna==2.9
 imageio==2.8.0
 isodate==0.6.0
-joblib==0.14.1
+joblib==1.2.0
 jsonschema==3.2.0
 Keras-Preprocessing==1.1.0
 kiwisolver==1.2.0
